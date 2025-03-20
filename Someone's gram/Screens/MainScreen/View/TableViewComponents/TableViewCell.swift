@@ -207,7 +207,7 @@ private extension TableViewCell {
     
     func showSkeletonLoader() {
         image.image = nil
-        image.backgroundColor = .lightGray
+        skeletonView.isHidden = false
     }
 
     func hideSkeletonLoader() {
