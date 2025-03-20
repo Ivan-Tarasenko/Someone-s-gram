@@ -26,6 +26,7 @@ class TableView: UITableView {
     private func setupUI() {
         backgroundColor = .background
         showsVerticalScrollIndicator = false
+        separatorStyle = .none
         
     }
 }

@@ -7,11 +7,12 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
 import UIKit
 
 class NetworkService {
     
-    private let apiKay = "dFqOPQVcMwWo4EtD8R-K6PtZ8JsfTFysZ2z4hCH_TBw"
+    let apiKey = Bundle.main.apiKey
     private let baseUrl = "https://api.unsplash.com/photos"
     
     static var shared = NetworkService()
@@ -19,23 +20,23 @@ class NetworkService {
     init() {}
     
     
-    func fetchPost(page: Int, prePage: Int = 10, completion: @escaping (Bool, Error?) -> Void) {
-        let urlString = "\(baseUrl)?page=\(page)&pre_page=\(prePage)&client_id=\(apiKay)"
+    func fetchPost(page: Int, prePage: Int = 10, completion: @escaping () -> Void) {
+        let urlString = "\(baseUrl)?page=\(page)&pre_page=\(prePage)&client_id=\(apiKey)"
         guard let url = URL(string: urlString) else { return }
         
         AF.request(url).validate().responseDecodable(of: [UnsplashPost].self) { response in
             switch response.result {
                 
             case .success(let post):
-                self.savePhotosToCoreData(post)
-                completion(true, nil)
-            case .failure(let error):
-                completion(false, error)
+                self.savePostsToCoreData(post)
+                completion()
+            case .failure(_):
+                AlertService.shared.showAlert(title: "Внимание", massage: "Что-то пошло не так! Попробуйте еще раз")
             }
         }
     }
     
-    private func savePhotosToCoreData(_ posts: [UnsplashPost]) {
+    private func savePostsToCoreData(_ posts: [UnsplashPost]) {
         let context = CoreDataService.shared.context
         
         for post in posts {
@@ -46,25 +47,42 @@ class NetworkService {
             entity.likes = Int64(post.likes)
             entity.authorName = post.user.name
             entity.authorAvatar = post.user.profile_image.large
+            entity.createdDate = post.created_at
+            entity.isLiked = false
         }
         
         CoreDataService.shared.saveContext()
-        print("Фото сохранены в Core Data")
     }
     
-    func loadImage(from urlString: String, into imageView: UIImageView) {
-        guard let url = URL(string: urlString) else { return }
+    private let imageCache = AutoPurgingImageCache() // Кеш изображений
+    
+    func loadImage(from urlString: String, into imageView: UIImageView, completion: (() -> Void)? = nil) {
+        guard let url = URL(string: urlString) else {
+            completion?()
+            return
+        }
         
-        AF.request(url).responseData { response in
+        // Проверяем, есть ли изображение в кеше
+        if let cachedImage = imageCache.image(withIdentifier: urlString) {
+            imageView.image = cachedImage
+            completion?()
+            return
+        }
+        
+        // Загружаем изображение из сети
+        AF.request(url).responseImage { response in
             switch response.result {
-            case .success(let data):
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        imageView.image = image
-                    }
+            case .success(let image):
+                // Сохраняем в кэш
+                self.imageCache.add(image, withIdentifier: urlString)
+                
+                DispatchQueue.main.async {
+                    imageView.image = image
+                    completion?()
                 }
             case .failure(let error):
-                print("Ошибка при загрузке изображения: \(error.localizedDescription)")
+                print("Ошибка загрузки изображения: \(error.localizedDescription)")
+                completion?()
             }
         }
     }

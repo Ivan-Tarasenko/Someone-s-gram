@@ -12,9 +12,9 @@ struct UnsplashPost: Codable {
     let urls: Urls
     let likes: Int
     let user: User
+    let created_at: String
     
     struct Urls: Codable {
-//        let small: String
         let regular: String
     }
     

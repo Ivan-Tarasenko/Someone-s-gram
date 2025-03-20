@@ -20,9 +20,6 @@ class CoreDataService {
     
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Someone_s_gram")
-        
-//        print(container.persistentStoreDescriptions.first?.url as Any)          // принтит ссылку на базу
-        
         container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -45,7 +42,7 @@ class CoreDataService {
     }
     
     // извлечение данных из базы
-    func fetchSavedPosts() -> [PostEntity] {
+    func fetchSavedContext() -> [PostEntity] {
         let context = CoreDataService.shared.context
         let fetshRequest: NSFetchRequest<PostEntity> = PostEntity.fetchRequest()
         do {
@@ -57,7 +54,7 @@ class CoreDataService {
     }
     
     // проверяем есть ли такой айди в базе
-       func isPostSaved() -> Bool {
+       func isSavedContext() -> Bool {
            let context = CoreDataService.shared.context
            let fetshRequest: NSFetchRequest<PostEntity> = PostEntity.fetchRequest()
            do {
