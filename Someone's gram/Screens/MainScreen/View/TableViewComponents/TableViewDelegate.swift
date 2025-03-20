@@ -13,7 +13,7 @@ class TableViewDelegate: NSObject, UITableViewDelegate {
     var onTapCell: ((Int) -> Void)?
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-       600
+       500
     }
     
      func scrollViewDidScroll(_ scrollView: UIScrollView) {
