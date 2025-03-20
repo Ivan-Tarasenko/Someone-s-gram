@@ -21,14 +21,17 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
         
         let post = posts[indexPath.row]
         
-        cell.setAvatar(imageURL: post.authorAvatar ?? "dd")
-        cell.setImage(imageURL: post.imageUrl ?? "f")
-        cell.setName(post.authorName ?? "dd")
-        cell.setDescription(post.desc ?? "")
+        cell.setAvatar(imageURL: post.authorAvatar)
+        cell.setImage(imageURL: post.imageUrl)
+        cell.setName(post.authorName)
+        cell.setDescription(post.desc)
         cell.setNumberOfLikes(post.likes)
+        cell.isLiked(post.isLiked)
+        cell.setCreatedDate(post.createdDate)
         
-//        tableView.reloadData()
-        
+        cell.onTapLike = {[] in
+            cell.putALike(in: post)
+        }
         
         return cell
     }
