@@ -11,8 +11,27 @@
 		1A3859532D88A7830093F7AA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3859522D88A7830093F7AA /* Alamofire */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		1A5CBD292D8C7B0400F67D1C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A3859222D88A4040093F7AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A3859292D88A4040093F7AA;
+			remoteInfo = "Someone's gram";
+		};
+		1A5CBDB22D8D949200F67D1C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A3859222D88A4040093F7AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A3859292D88A4040093F7AA;
+			remoteInfo = "Someone's gram";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1A38592A2D88A4040093F7AA /* Someone's gram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Someone's gram.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A5CBD232D8C7B0400F67D1C /* Someone's gramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Someone's gramUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A5CBDAE2D8D949200F67D1C /* Someone's gramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Someone's gramTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -34,6 +53,16 @@
 			path = "Someone's gram";
 			sourceTree = "<group>";
 		};
+		1A5CBD242D8C7B0400F67D1C /* Someone's gramUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Someone's gramUITests";
+			sourceTree = "<group>";
+		};
+		1A5CBDAF2D8D949200F67D1C /* Someone's gramTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Someone's gramTests";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +75,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1A5CBD202D8C7B0400F67D1C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A5CBDAB2D8D949200F67D1C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -53,6 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				1A38592C2D88A4040093F7AA /* Someone's gram */,
+				1A5CBD242D8C7B0400F67D1C /* Someone's gramUITests */,
+				1A5CBDAF2D8D949200F67D1C /* Someone's gramTests */,
 				1A38592B2D88A4040093F7AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,6 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				1A38592A2D88A4040093F7AA /* Someone's gram.app */,
+				1A5CBD232D8C7B0400F67D1C /* Someone's gramUITests.xctest */,
+				1A5CBDAE2D8D949200F67D1C /* Someone's gramTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,6 +139,52 @@
 			productReference = 1A38592A2D88A4040093F7AA /* Someone's gram.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1A5CBD222D8C7B0400F67D1C /* Someone's gramUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A5CBD2D2D8C7B0400F67D1C /* Build configuration list for PBXNativeTarget "Someone's gramUITests" */;
+			buildPhases = (
+				1A5CBD1F2D8C7B0400F67D1C /* Sources */,
+				1A5CBD202D8C7B0400F67D1C /* Frameworks */,
+				1A5CBD212D8C7B0400F67D1C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A5CBD2A2D8C7B0400F67D1C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1A5CBD242D8C7B0400F67D1C /* Someone's gramUITests */,
+			);
+			name = "Someone's gramUITests";
+			packageProductDependencies = (
+			);
+			productName = "Someone's gramUITests";
+			productReference = 1A5CBD232D8C7B0400F67D1C /* Someone's gramUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		1A5CBDAD2D8D949200F67D1C /* Someone's gramTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A5CBDB42D8D949200F67D1C /* Build configuration list for PBXNativeTarget "Someone's gramTests" */;
+			buildPhases = (
+				1A5CBDAA2D8D949200F67D1C /* Sources */,
+				1A5CBDAB2D8D949200F67D1C /* Frameworks */,
+				1A5CBDAC2D8D949200F67D1C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A5CBDB32D8D949200F67D1C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1A5CBDAF2D8D949200F67D1C /* Someone's gramTests */,
+			);
+			name = "Someone's gramTests";
+			packageProductDependencies = (
+			);
+			productName = "Someone's gramTests";
+			productReference = 1A5CBDAE2D8D949200F67D1C /* Someone's gramTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -99,11 +192,19 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1610;
-				LastUpgradeCheck = 1610;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					1A3859292D88A4040093F7AA = {
 						CreatedOnToolsVersion = 16.1;
+					};
+					1A5CBD222D8C7B0400F67D1C = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 1A3859292D88A4040093F7AA;
+					};
+					1A5CBDAD2D8D949200F67D1C = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 1A3859292D88A4040093F7AA;
 					};
 				};
 			};
@@ -126,12 +227,28 @@
 			projectRoot = "";
 			targets = (
 				1A3859292D88A4040093F7AA /* Someone's gram */,
+				1A5CBD222D8C7B0400F67D1C /* Someone's gramUITests */,
+				1A5CBDAD2D8D949200F67D1C /* Someone's gramTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1A3859282D88A4040093F7AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A5CBD212D8C7B0400F67D1C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A5CBDAC2D8D949200F67D1C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -148,7 +265,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1A5CBD1F2D8C7B0400F67D1C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A5CBDAA2D8D949200F67D1C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1A5CBD2A2D8C7B0400F67D1C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A3859292D88A4040093F7AA /* Someone's gram */;
+			targetProxy = 1A5CBD292D8C7B0400F67D1C /* PBXContainerItemProxy */;
+		};
+		1A5CBDB32D8D949200F67D1C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A3859292D88A4040093F7AA /* Someone's gram */;
+			targetProxy = 1A5CBDB22D8D949200F67D1C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1A3859412D88A4050093F7AA /* Debug */ = {
@@ -334,6 +478,100 @@
 			};
 			name = Release;
 		};
+		1A5CBD2B2D8C7B0400F67D1C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 2TFP9B86SX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Tarasenko.Someone-s-gramUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = "Someone's gram";
+				XROS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		1A5CBD2C2D8C7B0400F67D1C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 2TFP9B86SX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Tarasenko.Someone-s-gramUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = "Someone's gram";
+				XROS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
+		1A5CBDB52D8D949200F67D1C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 2TFP9B86SX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Tarasenko.Someone-s-gramTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Someone's gram.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Someone's gram";
+				XROS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		1A5CBDB62D8D949200F67D1C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 2TFP9B86SX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Tarasenko.Someone-s-gramTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Someone's gram.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Someone's gram";
+				XROS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -351,6 +589,24 @@
 			buildConfigurations = (
 				1A3859412D88A4050093F7AA /* Debug */,
 				1A3859422D88A4050093F7AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A5CBD2D2D8C7B0400F67D1C /* Build configuration list for PBXNativeTarget "Someone's gramUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A5CBD2B2D8C7B0400F67D1C /* Debug */,
+				1A5CBD2C2D8C7B0400F67D1C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A5CBDB42D8D949200F67D1C /* Build configuration list for PBXNativeTarget "Someone's gramTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A5CBDB52D8D949200F67D1C /* Debug */,
+				1A5CBDB62D8D949200F67D1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

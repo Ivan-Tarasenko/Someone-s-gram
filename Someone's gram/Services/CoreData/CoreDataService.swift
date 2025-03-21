@@ -12,7 +12,12 @@ class CoreDataService {
     
     static let shared = CoreDataService()
     
-    private init() {}
+    private init() {
+        if CommandLine.arguments.contains("--use-mock-data") {
+            clearDatabase()
+
+        }
+    }
     
     var context: NSManagedObjectContext {
         return persistentContainer.viewContext
@@ -63,7 +68,21 @@ class CoreDataService {
                print("Failed to fetch posts: \(error)")
                return false
            }
-   
        }
+    
+    func clearDatabase() {
+        let context = self.context
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "PostEntity")
+        do {
+            let objects = try context.fetch(fetchRequest)
+            for object in objects {
+                guard let managedObject = object as? NSManagedObject else { continue }
+                context.delete(managedObject)
+            }
+            try context.save()
+        } catch {
+            print("Failed to clear database: \(error.localizedDescription)")
+        }
+    }
 }
 

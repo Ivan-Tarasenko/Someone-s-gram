@@ -11,28 +11,35 @@ class TableViewCell: UITableViewCell {
     
     var onTapLike: (() -> Void)?
     
+    static var reuseIdentifier: String {
+        return String(describing: self)
+    }
+    
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(systemName: "person.circle")
         imageView.tintColor = .systemGray
         imageView.layer.cornerRadius = 22
+        imageView.accessibilityIdentifier = "avatarImageView"
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Name"
+        label.accessibilityIdentifier = "nameLabel"
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private lazy var image: UIImageView = {
+    private lazy var mainImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.accessibilityIdentifier = "mainImageView"
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -41,6 +48,7 @@ class TableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.accessibilityIdentifier = "descriptionLabel"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -49,16 +57,17 @@ class TableViewCell: UITableViewCell {
         let button = UIButton()
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.tintColor = .systemGray
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(tapLike), for: .touchUpInside)
+        button.accessibilityIdentifier = "likeButton"
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private lazy var numberOfLikesLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.accessibilityIdentifier = "numberOfLikesLabel"
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "0"
         return label
     }()
     
@@ -67,31 +76,21 @@ class TableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.textColor = .systemGray2
         label.textAlignment = .right
+        label.accessibilityIdentifier = "createdDateLabel"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    
-    
-    
-    
     private lazy var skeletonView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
+        view.accessibilityIdentifier = "skeletonView"
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    
-    
-    
-    
-    static var reuseIdentifier: String {
-        return String(describing: self)
-    }
-    
-    
+
+
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -141,7 +140,7 @@ class TableViewCell: UITableViewCell {
         showSkeletonLoader()
         startSkeletonAnimation()
         
-        NetworkService.shared.loadImage(from: imageURL, into: image) { [weak self] in
+        NetworkService.shared.loadImage(from: imageURL, into: mainImageView) { [weak self] in
             guard let self = self else { return }
             hideSkeletonLoader()
         }
@@ -206,13 +205,13 @@ private extension TableViewCell {
     }
     
     func showSkeletonLoader() {
-        image.image = nil
-        image.backgroundColor = .lightGray
+        mainImageView.image = nil
+        skeletonView.isHidden = false
     }
 
     func hideSkeletonLoader() {
         skeletonView.isHidden = true
-        image.backgroundColor = .clear
+        mainImageView.backgroundColor = .clear
         skeletonView.layer.removeAllAnimations()
     }
     
@@ -233,17 +232,17 @@ private extension TableViewCell {
             nameLabel.heightAnchor.constraint(equalToConstant: 44)
         ])
         
-        contentView.addSubview(image)
+        contentView.addSubview(mainImageView)
         NSLayoutConstraint.activate([
-            image.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 8),
-            image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            image.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            image.heightAnchor.constraint(equalToConstant: 300)
+            mainImageView.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 8),
+            mainImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            mainImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            mainImageView.heightAnchor.constraint(equalToConstant: 300)
         ])
         
         contentView.addSubview(descriptionLabel)
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 8),
+            descriptionLabel.topAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 8),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             descriptionLabel.heightAnchor.constraint(equalToConstant: 70)
@@ -273,10 +272,10 @@ private extension TableViewCell {
         
         contentView.addSubview(skeletonView)
         NSLayoutConstraint.activate([
-            skeletonView.topAnchor.constraint(equalTo: image.topAnchor),
-            skeletonView.leadingAnchor.constraint(equalTo: image.leadingAnchor),
-            skeletonView.trailingAnchor.constraint(equalTo: image.trailingAnchor),
-            skeletonView.bottomAnchor.constraint(equalTo: image.bottomAnchor)
+            skeletonView.topAnchor.constraint(equalTo: mainImageView.topAnchor),
+            skeletonView.leadingAnchor.constraint(equalTo: mainImageView.leadingAnchor),
+            skeletonView.trailingAnchor.constraint(equalTo: mainImageView.trailingAnchor),
+            skeletonView.bottomAnchor.constraint(equalTo: mainImageView.bottomAnchor)
         ])
     }
 }

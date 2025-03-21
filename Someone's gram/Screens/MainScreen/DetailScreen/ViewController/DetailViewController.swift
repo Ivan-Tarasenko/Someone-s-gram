@@ -13,6 +13,7 @@ final class DetailViewController: UIViewController {
         let image = UIImageView()
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
+        image.accessibilityIdentifier = "fullImage"
         return image
     }()
     
@@ -28,13 +29,7 @@ final class DetailViewController: UIViewController {
         action: #selector(DetailViewController.saveButtonTapped)
     )
     
-    private lazy var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        return activityIndicator
-    }()
+    private let activityIndicator = ActivityIndicator(style: .large)
     
     var urlImage: String?
     
@@ -45,7 +40,13 @@ final class DetailViewController: UIViewController {
         addButtonNavBar()
         configureView()
         setImage(imageURL: urlImage)
+        
         view.backgroundColor = .white
+        
+        shareButton.accessibilityIdentifier = "shareButton"
+        saveButton.accessibilityIdentifier = "saveButton"
+
+
     }
     
     // MARK: - Actions

@@ -17,10 +17,28 @@ class NetworkService {
     
     static var shared = NetworkService()
     
-    init() {}
+    private let imageCache = AutoPurgingImageCache() // Кеш изображений
+    
+    var useMockData = false // Флаг для использования моковых данных
+    
+    var prePage = 10
+    
+    init() {
+        if CommandLine.arguments.contains("--use-mock-data") {
+            useMockData = true
+            prePage = 2
+        }
+    }
     
     
-    func fetchPost(page: Int, prePage: Int = 10, completion: @escaping () -> Void) {
+    func fetchPost(page: Int, completion: @escaping () -> Void) {
+        
+        if useMockData {
+            saveMockPostsToCoreData()
+            completion()
+            return
+        }
+        
         let urlString = "\(baseUrl)?page=\(page)&pre_page=\(prePage)&client_id=\(apiKey)"
         guard let url = URL(string: urlString) else { return }
         
@@ -54,9 +72,33 @@ class NetworkService {
         CoreDataService.shared.saveContext()
     }
     
-    private let imageCache = AutoPurgingImageCache() // Кеш изображений
+    // Сохранение моковых данных в Core Data
+    private func saveMockPostsToCoreData() {
+        let context = CoreDataService.shared.context
+        
+        for post in MockData.posts {
+            let entity = PostEntity(context: context)
+            entity.id = post.id
+            entity.desc = post.description
+            entity.imageUrl = post.image
+            entity.likes = Int64(post.likes)
+            entity.authorName = post.username
+            entity.authorAvatar = post.avatar
+            entity.createdDate = post.createdAt
+            entity.isLiked = false
+        }
+        
+        CoreDataService.shared.saveContext()
+    }
     
     func loadImage(from urlString: String, into imageView: UIImageView, completion: (() -> Void)? = nil) {
+        
+        if useMockData {
+            imageView.image = UIImage(named: urlString) // Загружаем из Assets
+            completion?()
+            return
+        }
+        
         guard let url = URL(string: urlString) else {
             completion?()
             return
