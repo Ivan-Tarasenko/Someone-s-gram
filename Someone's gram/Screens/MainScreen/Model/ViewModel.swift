@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ViewModel {
+final class ViewModel {
     
     func setPage() -> Int {
         if !CoreDataService.shared.isSavedContext() {

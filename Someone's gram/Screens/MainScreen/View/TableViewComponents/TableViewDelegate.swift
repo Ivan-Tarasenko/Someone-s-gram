@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TableViewDelegate: NSObject, UITableViewDelegate {
+final class TableViewDelegate: NSObject, UITableViewDelegate {
     
     var onScrollAction: (() -> Void)?
     

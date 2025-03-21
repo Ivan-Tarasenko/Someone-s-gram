@@ -11,6 +11,7 @@ class TableView: UITableView {
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
+        accessibilityIdentifier = "tableView"
         registrationCell()
         setupUI()
     }
@@ -27,6 +28,5 @@ class TableView: UITableView {
         backgroundColor = .background
         showsVerticalScrollIndicator = false
         separatorStyle = .none
-        
     }
 }

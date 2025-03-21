@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
     private var tableView = TableView()
     private var dataSource = TableViewDataSource()
@@ -16,13 +16,8 @@ class MainViewController: UIViewController {
     private let viewModel = ViewModel()
     private let network = NetworkService()
     
-    private lazy var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        return activityIndicator
-    }()
+    private let activityIndicator = ActivityIndicator(style: .large)
+     
     
     
     // MARK: - Lifecycle
@@ -41,11 +36,7 @@ class MainViewController: UIViewController {
     func reloadData() {
         delegate.onScrollAction = { [weak self] in
             guard let self else { return }
-            
-            
             setActivityIndicator()
-            
-            
             let page = viewModel.setPage()
             network.fetchPost(page: page) {[weak self] in
                 guard let self else { return }
@@ -99,7 +90,7 @@ class MainViewController: UIViewController {
         view.addSubview(activityIndicator)
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
+            activityIndicator.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -110)
         ])
         
         activityIndicator.startAnimating()
